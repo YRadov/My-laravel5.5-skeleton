@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Sample" basedir="." default="build">
+
+
+    <target name="apidoc">
+        <echo msg="Created docs for api..."/>
+        <exec command="apidoc -i modules/api/v1/controllers/ -o web/apidoc/" dir="."/>
+    </target>
+
+
+    <target name="ide_helper_docs">
+        <echo msg="Created ide-helper docs..."/>
+        <exec command="echo y| php artisan ide-helper:models  --dir='app/Core/Model'" dir="."/>
+    </target>
+
+
+    <target name="migrate_refresh">
+        <echo msg="Migrate refresh ..."/>
+        <exec command="php artisan migrate:refresh --seed" dir="."/>
+    </target>
+
+
+    <!--<target name="ide_helper_generate">-->
+        <!--<echo msg="Generate ide-helper ..."/>-->
+        <!--<exec command="php artisan ide-helper:generate" dir="."/>-->
+    <!--</target>-->
+
+
+    <target name="build" depends="ide_helper_docs">
+
+    </target>
+</project>
